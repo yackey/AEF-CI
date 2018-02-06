@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -x
+
+SCRIPT_NAME=`basename $0`
+
+if [ $# -ne 0 ]
+then
+	echo "usage: $SCRIPT_NAME"
+	exit
+fi
+
+cd ../filesystem 
+find . -print | cpio -pduvm /home/yackey/RepoBase/BuildrootBase/buildroot-2017.11.1/output/target
+

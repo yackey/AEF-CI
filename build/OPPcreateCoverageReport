@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#set -x
+
+SCRIPT_NAME=`basename $0`
+
+if [ $# -ne 0 ]
+then
+	echo "usage: $SCRIPT_NAME (no parameters or anyting)"
+	exit
+fi
+
+/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1  
+/usr/bin/genhtml code_coverage.info --branch-coverage --output-directory ./code_coverage_report/
+
+
+

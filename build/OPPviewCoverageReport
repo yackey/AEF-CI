@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#set -x
+
+SCRIPT_NAME=`basename $0`
+
+if [ $# -ne 0 ]
+then
+	echo "usage: $SCRIPT_NAME (no parameters or anyting)"
+	exit
+fi
+
+/usr/bin/google-chrome ./code_coverage_report/index.html
+
+
+
