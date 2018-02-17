@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -x
+set -x
 
 SCRIPT_NAME=`basename $0`
 ARM_VAR=ARM
