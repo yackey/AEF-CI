@@ -66,7 +66,9 @@ add_subdirectory( AefLib )
 #SET(CMAKE_CC_COMPILER /home/yackey/RepoBase/BuildrootBase/buildroot-2017.11.1/output/host/bin/arm-buildroot-linux-gnueabihf-gcc)
 #endif()
 
-message(STATUS "source ${CMAKE_TARGET_PROCESSOR}")
+message(STATUS "source TP ${CMAKE_TARGET_PROCESSOR}")
+message(STATUS "source SP ${CMAKE_SYSTEM_PROCESSOR}")
+
 message(STATUS "source ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "source ${CMAKE_C_COMPILER}")
 message(STATUS "source ${CMAKE_CXX_COMPILER}")
