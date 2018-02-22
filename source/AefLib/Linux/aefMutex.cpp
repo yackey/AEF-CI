@@ -1,7 +1,7 @@
 /***************************************************************************/
 /*!
 **	\file	aefLinuxMutex.cpp 
-**	\brief	VxWorks-specific implementation of the AEF Mutex Class
+**	\brief	Linux-specific implementation of the AEF Mutex Class
 **
 **	Avtec, Inc.
 **	100 Innovation Place
