@@ -1,7 +1,7 @@
 # shared-aef
 Mr. Yackey's masterpiece
 
-Welcome to **AEF**, Avtec's C++ Embedded Framework library
+Welcome to **AEF**, Avtec's C++ Embedded Application Framework library
 
 This repository is ...
 
