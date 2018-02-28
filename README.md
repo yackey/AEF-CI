@@ -11,7 +11,7 @@ Please see the project page above for more information as well as ...
 ## Features ##
 
   * Embedded
-  * Framework
+  * Application Framework
 
 ## Platforms ##
 
