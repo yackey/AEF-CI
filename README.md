@@ -1,7 +1,7 @@
-# AEF
+# shared-aef
 Mr. Yackey's masterpiece
 
-Welcome to **AEF**, Avtec's Embedded Framework
+Welcome to **AEF**, Avtec's C++ Embedded Application Framework Library
 
 This repository is ...
 
@@ -11,7 +11,7 @@ Please see the project page above for more information as well as ...
 ## Features ##
 
   * Embedded
-  * Framework
+  * Application Framework
 
 ## Platforms ##
 
@@ -23,11 +23,11 @@ AEF targets a variety of platforms:
 
 ## Who Is Using AEF? ##
 
-Steve
+Steve, and soon others will follow
 
 ## Related Projects ##
 
-OPP App
+OP+ App
 
 ## Requirements ##
 
@@ -37,3 +37,7 @@ OPP App
 
 ### Windows Requirements ###
 
+
+Sri got AEF to go all the way to Jenkins using a Freestyle project and pull down AEF.git.
+Chris changed the name of the repo to shared-aef.git and modifed the Jenkins project to continue to work.
+Chris is now working on a Jenkins Pipeline project that will do the same thing as the Freestyle project.
