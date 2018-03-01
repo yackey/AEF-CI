@@ -1,0 +1,38 @@
+
+#!/bin/bash
+
+#set -x
+
+SCRIPT_NAME=`basename $0`
+#
+ARM_VAR=ARM
+#
+SIM_VAR=simulator
+#
+DEBUG_VAR=Debug
+RELEASE_VAR=Release
+#
+
+if [ $# -ne 0 ]
+then
+	echo "usage: $SCRIPT_NAME"
+	exit
+fi
+
+./AEFexport-pkg $SIM_VAR $DEBUG_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AEFexport-pkg $SIM_VAR $RELEASE_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AEFexport-pkg $ARM_VAR $DEBUG_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AEFexport-pkg $ARM_VAR $RELEASE_VAR
+echo 'hit a key to continue ...'
+read z
+
+echo done!

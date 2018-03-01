@@ -10,7 +10,7 @@ then
 	exit
 fi
 
-./x86/bin/release/AefTest
+./x86_64/bin/Debug/AefTest
 
 
 
