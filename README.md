@@ -7,7 +7,7 @@ This repository is ...
 
 Please see the project page above for more information as well as ...
 
-Now with Jenkins support added - 3.
+Now with Jenkins support added - 4.
 
 ## Features ##
 
