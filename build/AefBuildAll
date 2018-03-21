@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#set -x
+
+SCRIPT_NAME=`basename $0`
+#
+ARM_VAR=ARM
+#
+SIM_VAR=simulator
+#
+DEBUG_VAR=Debug
+RELEASE_VAR=Release
+#
+
+if [ $# -ne 0 ]
+then
+	echo "usage: $SCRIPT_NAME"
+	exit
+fi
+
+./AefBuildOne $SIM_VAR $DEBUG_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AefBuildOne $SIM_VAR $RELEASE_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AefBuildOne $ARM_VAR $DEBUG_VAR
+echo 'hit a key to continue ...'
+read z
+
+./AefBuildOne $ARM_VAR $RELEASE_VAR
+echo 'hit a key to continue ...'
+read z
+
+ls -lR ARM
+ls -lR x86_64
+
+echo done!

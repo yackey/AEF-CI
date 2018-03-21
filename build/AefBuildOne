@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#set -x
+
+SCRIPT_NAME=`basename $0`
+#
+ARM_VAR=ARM
+ARM_TGT=$ARM_VAR
+ARM_TC_FILE='../Toolchain-GCC-ARM.cmake'
+ARM_COMPILER_VERSION='6.4'
+CONAN_ARM_TGT=armv7
+#
+SIM_VAR=simulator
+SIM_TGT=x86_64
+SIM_TC_FILE='../Toolchain-GCC-x86_64.cmake'
+SIM_COMPILER_VERSION='6.4'
+CONAN_SIM_TGT=$SIM_TGT
+#
+DEBUG_VAR=Debug
+RELEASE_VAR=Release
+#
+BUILD_TYPE_VAR=""
+BUILD_TARGET=""
+BUILD_TC_FILE=""
+CONAN_EXPORT_TGT=""
+COMPILER_VERSION=""
+#
+
+if [ $# -ne 2 ]
+then
+	echo "usage: $SCRIPT_NAME $ARM_VAR|$SIM_VAR $DEBUG_VAR|$RELEASE_VAR"
+	exit
+fi
+
+if [ $2 = $DEBUG_VAR ]
+then
+	BUILD_TYPE_VAR=$DEBUG_VAR
+
+elif [ $2 = $RELEASE_VAR ]
+then
+	BUILD_TYPE_VAR=$RELEASE_VAR
+
+else
+	echo "$2 not a valid build type"
+	echo "usage: $SCRIPT_NAME $ARM_VAR|$SIM_VAR $DEBUG_VAR|$RELEASE_VAR"
+	exit
+fi
+
+
+if [ $1 = $ARM_VAR ]
+then
+    BUILD_TARGET=$ARM_TGT
+    BUILD_TC_FILE=$ARM_TC_FILE
+    CONAN_EXPORT_TGT=$CONAN_ARM_TGT
+    COMPILER_VERSION=$ARM_COMPILER_VERSION
+
+elif [ $1 = $SIM_VAR ]
+then
+    BUILD_TARGET=$SIM_TGT
+    BUILD_TC_FILE=$SIM_TC_FILE
+    CONAN_EXPORT_TGT=$CONAN_SIM_TGT
+    COMPILER_VERSION=$SIM_COMPILER_VERSION
+ 
+else
+	echo "$1 not a valid target"
+	echo "usage: $SCRIPT_NAME $ARM_VAR|$SIM_VAR $DEBUG_VAR|$RELEASE_VAR"
+    exit
+fi
+
+CMAKE_CMD="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=$BUILD_TC_FILE -DCMAKE_BUILD_TYPE=$BUILD_TYPE_VAR -DCMAKE_TARGET_PROCESSOR=$BUILD_TARGET .."
+
+echo $CMAKE_CMD
+
+/bin/rm -f ./CMakeCache.txt
+/bin/rm -f ./Makefile
+/bin/rm -f ./conan*.*
+/bin/rm -rf ./CMakefiles
+/bin/rm -rf ./source
+
+conan install ../test -s os=Linux -s arch=$CONAN_EXPORT_TGT -s compiler=gcc -s compiler.version=$COMPILER_VERSION -s build_type=$BUILD_TYPE_VAR
+
+$CMAKE_CMD
+make -q clean
+if test $? -le 1
+then
+    make clean
+fi
+make VERBOSE=1
+
+echo $CMAKE_CMD
+
+echo done!
