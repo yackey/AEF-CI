@@ -11,7 +11,7 @@ CONAN_ARM_TGT=armv7
 #
 SIM_VAR=simulator
 SIM_TGT=x86_64
-SIM_COMPILER_VERSION='7.2'
+SIM_COMPILER_VERSION='6.4'
 CONAN_SIM_TGT=$SIM_TGT
 #
 DEBUG_VAR=Debug
@@ -62,8 +62,11 @@ else
     exit
 fi
 
-#CONAN_CMD="conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=$CONAN_EXPORT_TGT -s compiler=gcc -s compiler.version=$COMPILER_VER -s build_type=$BUILD_TYPE_VAR -f"
-CONAN_CMD="conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=$CONAN_EXPORT_TGT -s build_type=$BUILD_TYPE_VAR -f"
+/bin/rm ./conan*.*
+
+CONAN_CMD="conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=$CONAN_EXPORT_TGT -s compiler=gcc -s compiler.version=$COMPILER_VER -s build_type=$BUILD_TYPE_VAR -f"
+
+#CONAN_CMD="conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=$CONAN_EXPORT_TGT -s build_type=$BUILD_TYPE_VAR -f"
 
 echo $CONAN_CMD
 

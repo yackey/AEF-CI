@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 #set -x
@@ -19,20 +18,23 @@ then
 	exit
 fi
 
-./AEFexport-pkg $SIM_VAR $DEBUG_VAR
+./AefBuildOne $SIM_VAR $DEBUG_VAR
 echo 'hit a key to continue ...'
 read z
 
-./AEFexport-pkg $SIM_VAR $RELEASE_VAR
+./AefBuildOne $SIM_VAR $RELEASE_VAR
 echo 'hit a key to continue ...'
 read z
 
-./AEFexport-pkg $ARM_VAR $DEBUG_VAR
+./AefBuildOne $ARM_VAR $DEBUG_VAR
 echo 'hit a key to continue ...'
 read z
 
-./AEFexport-pkg $ARM_VAR $RELEASE_VAR
+./AefBuildOne $ARM_VAR $RELEASE_VAR
 echo 'hit a key to continue ...'
 read z
+
+ls -lR ARM
+ls -lR x86_64
 
 echo done!

@@ -1,11 +1,17 @@
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#conan_basic_setup(TARGETS)
+#conan_basic_setup(TARGETS NO_OUTPUT_DIRS)
+conan_basic_setup(NO_OUTPUT_DIRS)
+
 # location of header files
 include_directories(
     ${PROJECT_SOURCE_DIR}
     ${PROJECT_SOURCE_DIR}/source/AefLib
     ${PROJECT_SOURCE_DIR}/source/AefLib/Linux
-    ${PROJECT_SOURCE_DIR}/ThirdParty/googletest-master/googlemock/include
-    ${PROJECT_SOURCE_DIR}/ThirdParty/googletest-master/googletest/include
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/gtest
+    ${PROJECT_SOURCE_DIR}/include/gmock
     )
 
 # unit test executable
@@ -20,7 +26,7 @@ add_executable(
 target_link_libraries(
     AefTest
     AEF_ARM
-    ${PROJECT_SOURCE_DIR}/ThirdParty/thirdparty-libs/${CMAKE_TARGET_PROCESSOR}/libgmock.a
+    ${CONAN_LIBS}
     rt
     pthread
     gcov
