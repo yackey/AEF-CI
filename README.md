@@ -38,4 +38,4 @@ OP+ App
 
 ### Windows Requirements ###
 
-Azure integration - try 5
+Azure integration - try 6
