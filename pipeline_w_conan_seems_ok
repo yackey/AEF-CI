@@ -1,0 +1,111 @@
+
+
+// demoing a second agent - add a node label if you spin up a second agent to ensure this runs on another agent.
+node('ubuntu-17-10') {
+
+    // on windows use: bat 'ls'
+    sh 'ls'
+
+    // on windows use: bat 'del /S /Q *'
+    sh 'rm -rf *'
+
+    //unstash 'everything'
+
+    // on windows use: bat 'dir'
+    sh 'ls'
+}
+
+
+node() {
+    
+    stage('Checkout') {
+        git 'https://github.com/yackey/AEF-CI.git'
+    }
+    
+    def project_path = "build"
+
+    dir(project_path) {
+        stage('Conan Install') {
+            sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
+        }
+        
+        stage ('Release build')
+        {
+            runCI("Debug", "x86_64")
+        } 
+    }
+}
+
+//def runCI(chainfile, buildtype, processor) {
+def runCI(buildtype, processor) {
+        //sh 'rm -rf *'
+        //unstash 'everything'
+            stage('Build') {
+                echo "${buildtype}"
+                if ("${buildtype}" == "Release") 
+                {
+                    sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TARGET_PROCESSOR=x86_64 ..' 
+                }
+                else
+                {
+                    sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=x86_64 ..' 
+                }
+            
+                sh 'cmake --build .'
+
+            }
+            
+            stage('Test') {
+                if ("${buildtype}" == "Release") 
+                {
+                    sh 'ls'
+                    sh './x86_64/bin/Release/AefTest --gtest_output=xml:AefTestResultsRelease.xml'
+                    sh 'ls'   
+                    step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'AefTestResultsRelease.xml'])
+                }
+                else
+                {
+                    sh 'ls'
+                    sh './x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'
+                    sh 'ls'   
+                    step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'AefTestResultsDebug.xml'])
+                }
+            }
+        
+            stage('Coverage Generation') {
+                if ("${buildtype}" == "Release") 
+                {
+                    //sh '/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1' 
+                    //sh '/usr/bin/genhtml code_coverage.info --branch-coverage --output-directory ./code_coverage_report_Release'
+                }
+                else
+                {
+                    sh '/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1' 
+                    sh '/usr/bin/genhtml code_coverage.info --branch-coverage --output-directory ./code_coverage_report_Debug'
+                    
+                }
+            }
+            
+            stage('Publish Report') {
+                if ("${buildtype}" == "Release") 
+                {
+                    //publishHTML([allowMissing: false, 
+                    //alwaysLinkToLastBuild: false, 
+                    //keepAll: true, 
+                    //reportDir: 'code_coverage_report_Release', 
+                    //reportFiles: 'index.html', 
+                    //reportName: 'Code Coverage Release', 
+                    //reportTitles: ''])                    
+                }
+                else
+                {
+                    publishHTML([allowMissing: false, 
+                    alwaysLinkToLastBuild: false, 
+                    keepAll: true, 
+                    reportDir: 'code_coverage_report_Debug', 
+                    reportFiles: 'index.html', 
+                    reportName: 'Code Coverage Debug', 
+                    reportTitles: ''])                     
+                }
+            }
+}
