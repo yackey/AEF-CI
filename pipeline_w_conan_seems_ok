@@ -25,10 +25,7 @@ node('ubuntu-build') {
     def project_path = "build"
 
     dir(project_path) {
-        stage('Conan Install') {
-            sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
-        }
-        
+       
         stage ('Release Simulator build')
         {
             runCI("Release", "x86_64")
@@ -54,11 +51,34 @@ node('ubuntu-build') {
     }
 }
 
-// zzzzzzzzzzz
-
 def runCI(buildtype, processor) {
-    //sh 'rm -rf *'
+    sh 'rm -rf *'
     //unstash 'everything'
+    stage('Conan Install') {
+        if ("${buildtype}" == "Release") 
+        {
+            if("${processor}" == "x86_64")
+            {
+                sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'
+            }
+            else
+            {
+                sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'            
+            }
+        }
+        else
+        {
+            if("${processor}" == "x86_64")
+            {
+                sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
+            }
+            else
+            {
+                sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'            
+            }
+        }
+    }
+        
     stage('Build') {
         echo "${buildtype}"
         if ("${buildtype}" == "Release") 
@@ -80,7 +100,7 @@ def runCI(buildtype, processor) {
             }
             else
             {
-                sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=ARM -DCMAKE_TARGET_PROCESSOR=ARM ..' 
+                sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=ARM ..' 
             } 
         }
     
