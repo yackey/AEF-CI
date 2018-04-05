@@ -1,26 +1,19 @@
-# shared-aef
-Mr. Yackey's masterpiece
+# shared-package-aeflib
 
-Welcome to **AEF**, Avtec's C++ Embedded Application Framework Library
+Welcome to **AEFlib**, Avtec's C++ Embedded Application Framework Library available as a conan package
 
-This repository is ...
+This repository holds
+AEF package-able as a conan library
+And it consumes AvtecGmock package
 
-Please see the project page above for more information as well as ...
-
-Now with Jenkins support added - 5.
+This is a useful combination for learning how to integrate packages such as this into our CI environment.
 
 ## Features ##
 
-  * Embedded
-  * Application Framework
+  * can produce a conan package
+  * can consume a conan package
 
 ## Platforms ##
-
-AEF targets a variety of platforms:
-
-  * Linux
-  * VxWorks
-  * Windows
 
 ## Who Is Using AEF? ##
 
@@ -28,7 +21,8 @@ Steve, and soon others will follow
 
 ## Related Projects ##
 
-OP+ App
+shared-package-AvtecGmock
+AefLib package consumer
 
 ## Requirements ##
 
@@ -38,4 +32,3 @@ OP+ App
 
 ### Windows Requirements ###
 
-Azure integration - try 17

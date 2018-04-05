@@ -9,7 +9,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "aefTypes.h"
+#include "aefLinuxTypes.h"
 #include "aefTimer.h"
 
 //#include "aefTask.h"

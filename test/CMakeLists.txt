@@ -7,8 +7,8 @@ conan_basic_setup(NO_OUTPUT_DIRS)
 # location of header files
 include_directories(
     ${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/source/AefLib
-    ${PROJECT_SOURCE_DIR}/source/AefLib/Linux
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/Linux
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/include/gtest
     ${PROJECT_SOURCE_DIR}/include/gmock
@@ -20,6 +20,8 @@ add_executable(
     Main.cpp
     MutexTests.cpp
     TimerTests.cpp
+    ExceptionTests.cpp
+    QueueTaskTests.cpp
     )
 
 # link unit test executable against google test

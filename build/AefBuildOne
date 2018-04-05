@@ -74,17 +74,18 @@ echo $CMAKE_CMD
 /bin/rm -f ./CMakeCache.txt
 /bin/rm -f ./Makefile
 /bin/rm -f ./conan*.*
-/bin/rm -rf ./CMakefiles
-/bin/rm -rf ./source
+/bin/rm -rf ./CMakeFiles
+/bin/rm -rf ./src
+/bin/rm -rf ./test
 
 conan install ../test -s os=Linux -s arch=$CONAN_EXPORT_TGT -s compiler=gcc -s compiler.version=$COMPILER_VERSION -s build_type=$BUILD_TYPE_VAR
 
 $CMAKE_CMD
-make -q clean
-if test $? -le 1
-then
-    make clean
-fi
+#make -q clean
+#if test $? -le 1
+#then
+#    make clean
+#fi
 make VERBOSE=1
 
 echo $CMAKE_CMD

@@ -9,7 +9,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "aefTypes.h"
+#include "aefLinuxTypes.h"
 #include "aefTimer.h"
 
 //#include "aefTask.h"
@@ -51,7 +51,7 @@ TEST(TimerTest, TimerStart_WithOneShot_ReturnClientInfo)
 	AEF_TIMER_HANDLE nTh = pAefTimer->Start(nTimerId, 5000, AEF_TIMER_TYPE_ONE_SHOT);
 	EXPECT_NE(nTh, AEF_INVALID_TIMER_HANDLE);
 
-	UNSIGNED32 outId = 0;
+	uint32_t outId = 0;
 	void*	pVoid;
 	bool bRet = pAefTimer->GetTimerClientInfo(nTh, outId, pVoid);
 	ASSERT_TRUE(bRet);
@@ -59,13 +59,13 @@ TEST(TimerTest, TimerStart_WithOneShot_ReturnClientInfo)
 
 TEST(TimerTest, TimerStart_WithOneShot_ReturnTimerId)
 {
-	UNSIGNED32 nTimerId = 10;
+	uint32_t nTimerId = 10;
 	CAefTimer* pAefTimer = new CAefTimer();
 	pAefTimer->Init(55);
 	AEF_TIMER_HANDLE nTh = pAefTimer->Start(nTimerId, 5000, AEF_TIMER_TYPE_ONE_SHOT);
 	EXPECT_NE(nTh, AEF_INVALID_TIMER_HANDLE);
 
-	UNSIGNED32 outId = 0;
+	uint32_t outId = 0;
 	void*	pVoid;
 	bool bRet = pAefTimer->GetTimerClientInfo(nTh, outId, pVoid);
 	ASSERT_EQ(nTimerId, nTimerId);

@@ -1,0 +1,15 @@
+*/.directory
+.directory
+.vscode*
+build/ARM/
+build/CMakeCache.txt
+build/CMakeFiles/
+build/Makefile
+build/cmake_install.cmake
+build/conanbuildinfo.cmake
+build/conanbuildinfo.txt
+build/conaninfo.txt
+build/src/
+build/test/
+build/x86_64/
+

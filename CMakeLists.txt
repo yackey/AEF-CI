@@ -46,7 +46,7 @@ option(BUILD_AEF "Builds AEF" ON)
 option(BUILD_TEST "Builds TEST" ON)
 
 if(BUILD_AEF)
-  add_subdirectory( source )
+  add_subdirectory( src )
 endif()
 
 if(BUILD_TEST)

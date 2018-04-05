@@ -15,7 +15,7 @@ class AefLibConan(ConanFile):
 
     def package(self):
 #       consumers will not have a directory structure in the include directory
-        self.copy("*.h", "include", "source/AefLib", keep_path=False)
+        self.copy("*.h", "include", "include", keep_path=False)
 #        print('yo from package')
 #        cwd = os.getcwd()
 #        print("cwd [", cwd, "]")
