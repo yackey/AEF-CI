@@ -1,5 +1,9 @@
 pipeline {
     
+    options {
+        timestamps()
+    }
+    
     agent {
         node {
             label 'ubuntu-build'
@@ -17,6 +21,7 @@ pipeline {
             }   // end of checkout stage  
 
             stage ('Parallel ARM Build') {
+                failFast true
                 parallel {
 
                     stage ('Release ARM Build') {
@@ -49,11 +54,11 @@ pipeline {
                         }   // end of steps
                     }   // end of Debug ARM Build stage
 
-
                 }   //end of parallel ARM
             }
 
             stage ('Parallel Simulator Build') {
+                failFast true
                 parallel {
 
                     stage ('Release Simulator Build') {
@@ -85,18 +90,15 @@ pipeline {
                             }   // end of dir
                         }   // end of steps
                     }   // end of Debug Simulator Build stage
-
-
+                    
                 }   //end of parallel simulator
             }
-
     }   // end of stages        
 }
 
 def Build_x86_64_Release() {
     sh 'rm -rf *'
     unstash 'everything'
-    sh 'ls'
     sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TARGET_PROCESSOR=x86_64 ..'
     sh 'cmake --build .'
@@ -108,7 +110,6 @@ def Build_x86_64_Release() {
 def Build_x86_64_Debug() {
     sh 'rm -rf *'
     unstash 'everything'
-    sh 'ls'
     sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=x86_64 ..'
     sh 'cmake --build .'
@@ -134,7 +135,6 @@ def Build_x86_64_Debug() {
 def Build_ARM_Release() {
     sh 'rm -rf *'
     unstash 'everything'
-    sh 'ls'
     sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TARGET_PROCESSOR=ARM ..'
     sh 'cmake --build .'
@@ -146,7 +146,6 @@ def Build_ARM_Release() {
 def Build_ARM_Debug() {
     sh 'rm -rf *'
     unstash 'everything'
-    sh 'ls'
     sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=ARM ..'
     sh 'cmake --build .'
