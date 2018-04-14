@@ -8,7 +8,18 @@ pipeline {
         node {
             label 'ubuntu-build'
             }   // end of node
-    }    // end of agent     
+    }    // end of agent  
+    
+    environment {
+        artifactory_name = "YackNet"
+        artifactory_repo = "YackNet-conan"
+        //server = Artifactory.server artifactory_name
+        //client = Artifactory.newConanClient()
+        //serverName = client.remote.add server: server, repo: artifactory_repo
+        //String command = "upload AEFLib/1.0@yackey/stable --all -r=${serverName} --confirm"
+        //def b = client.run(command: command)
+        //server.publishBuildInfo b
+    }
     
     stages {
 
@@ -88,12 +99,47 @@ pipeline {
                         steps {
                             dir ("build") {
                                 Build_x86_64_Debug()
+                                stash name: 'x86_64_build_items', 
+                                    excludes: 'ARM/**', 
+                                    includes: '**'
+                        
                             }   // end of dir
                         }   // end of steps
                     }   // end of Debug Simulator Build stage
                     
                 }   //end of parallel simulator
             }
+            
+            stage("Generate Test results") {
+                agent {
+                    node {
+                        label 'ubuntu-build'
+                    }   // end of node
+                }    // end of agent
+                
+                steps {
+                    dir ("build") {
+                        GenerateTestResuts_x86_64_Debug()
+                        stash name: 'x86_64_test_result_items', 
+                            excludes: 'ARM/**', 
+                            includes: '**'
+                     }   // end of dir
+                }   // end of steps
+            }   // end of Generate Test results            
+            
+            stage("Publish Test results") {
+                agent {
+                    node {
+                        label 'ubuntu-build'
+                    }   // end of node
+                }    // end of agent
+                
+                steps {
+                    dir ("build") {
+                        PublishTestResuts_x86_64_Debug()
+                     }   // end of dir
+                }   // end of steps
+            }   // end of Publish Test results       
             
             stage("Upload Packages") {
                 agent {
@@ -107,31 +153,26 @@ pipeline {
                         UploadPackages()
                      }   // end of dir
                 }   // end of steps
-            }   // end of upload packages
+                
+                post {
+                    always {
+                        RemovePackages()                    
+                    }
+                }
+            }   // end of Upload Packages
             
     }   // end of stages        
-}
+    
+}   // end of pipeline
+
 
 def UploadPackages() {
-    script {
-        //sh 'uname -a'
-        //sh 'conan remote list'
-        //sh 'conan search'
         sh 'conan user -p Dapassword123 -r YackNet yackey'
-        
-        //def artifactory_name = "YackNet"
-        //def artifactory_repo = "YackNet-conan"
-        //def server = Artifactory.server artifactory_name
-        //def client = Artifactory.newConanClient()
-        //def serverName = client.remote.add server: server, repo: artifactory_repo
-        //String command = "upload AEFLib/1.0@yackey/stable --all -r ${serverName} --confirm"
-        //def b = client.run(command: command)
-        //server.publishBuildInfo b
-        
-        sh 'conan upload AEFLib/1.0@yackey/stable --all -rYackNet --confirm'
+        sh 'conan upload AEFLib/1.0@yackey/stable --all -r $artifactory_name --confirm'
+}
+
+def RemovePackages() {
         sh 'conan remove AEFLib/1.0@yackey/stable -f'
-        
-    }
 }
 
 def Build_x86_64_Release() {
@@ -151,20 +192,6 @@ def Build_x86_64_Debug() {
     sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=x86_64 ..'
     sh 'cmake --build .'
-    //
-    sh './x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'
-    step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'AefTestResultsDebug.xml'])
-    //  
-    sh '/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1' 
-    sh '/usr/bin/genhtml code_coverage.info --branch-coverage --output-directory ./code_coverage_report_Debug'                        
-    //
-    publishHTML([allowMissing: false, 
-        alwaysLinkToLastBuild: false, 
-        keepAll: true, 
-        reportDir: 'code_coverage_report_Debug', 
-        reportFiles: 'index.html', 
-        reportName: 'Code Coverage Debug', 
-        reportTitles: ''])                         
     //
     sh 'rm ./conan*.*'
     sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f'
@@ -190,4 +217,27 @@ def Build_ARM_Debug() {
     //
     sh 'rm ./conan*.*'
     sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f'
+}
+
+def GenerateTestResuts_x86_64_Debug() {
+    sh 'rm -rf *'
+    unstash 'x86_64_build_items'
+    sh './x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'                        
+}
+
+def PublishTestResuts_x86_64_Debug() {
+    sh 'rm -rf *'
+    unstash 'x86_64_test_result_items'
+    step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'AefTestResultsDebug.xml'])
+    //  
+    sh '/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1' 
+    sh '/usr/bin/genhtml code_coverage.info --branch-coverage --output-directory ./code_coverage_report_Debug'                        
+    //
+    publishHTML([allowMissing: false, 
+        alwaysLinkToLastBuild: false, 
+        keepAll: true, 
+        reportDir: 'code_coverage_report_Debug', 
+        reportFiles: 'index.html', 
+        reportName: 'Code Coverage Debug', 
+        reportTitles: ''])                         
 }
