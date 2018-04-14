@@ -1,5 +1,5 @@
 pipeline {
-    
+
     options {
         timestamps()
     }
@@ -11,6 +11,7 @@ pipeline {
     }    // end of agent     
     
     stages {
+
             stage ('Checkout') {
                 steps {
                     git 'https://github.com/yackey/AEF-CI.git'
@@ -19,7 +20,7 @@ pipeline {
                         includes: '**'
                 }   // end of steps
             }   // end of checkout stage  
-
+            
             stage ('Parallel ARM Build') {
                 failFast true
                 parallel {
@@ -93,7 +94,44 @@ pipeline {
                     
                 }   //end of parallel simulator
             }
+            
+            stage("Upload Packages") {
+                agent {
+                    node {
+                        label 'ubuntu-build'
+                    }   // end of node
+                }    // end of agent
+                
+                steps {
+                    dir ("build") {
+                        UploadPackages()
+                     }   // end of dir
+                }   // end of steps
+            }   // end of upload packages
+            
     }   // end of stages        
+}
+
+def UploadPackages() {
+    script {
+        //sh 'uname -a'
+        //sh 'conan remote list'
+        //sh 'conan search'
+        sh 'conan user -p Dapassword123 -r YackNet yackey'
+        
+        //def artifactory_name = "YackNet"
+        //def artifactory_repo = "YackNet-conan"
+        //def server = Artifactory.server artifactory_name
+        //def client = Artifactory.newConanClient()
+        //def serverName = client.remote.add server: server, repo: artifactory_repo
+        //String command = "upload AEFLib/1.0@yackey/stable --all -r ${serverName} --confirm"
+        //def b = client.run(command: command)
+        //server.publishBuildInfo b
+        
+        sh 'conan upload AEFLib/1.0@yackey/stable --all -rYackNet --confirm'
+        sh 'conan remove AEFLib/1.0@yackey/stable -f'
+        
+    }
 }
 
 def Build_x86_64_Release() {

@@ -1,72 +1,72 @@
 [
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefException.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefException.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefException.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefException.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefException.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefException.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefMutex.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefMutex.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefMutex.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefMutex.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefMutex.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefMutex.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefQueueTask.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefQueueTask.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefQueueTask.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefQueueTask.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefQueueTask.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefQueueTask.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefSerial.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefSerial.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefSerial.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefSerial.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefSerial.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefSerial.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTask.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTask.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTask.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTask.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTask.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTask.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTaskSafe.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTaskSafe.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTaskSafe.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTaskSafe.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTaskSafe.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTaskSafe.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTcpServer.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTcpServer.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTcpServer.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTcpServer.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTcpServer.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTcpServer.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTimer.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTimer.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTimer.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTimer.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTimer.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTimer.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/src/AefLib",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTaskMessage.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTaskMessage.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/src/AefLib/Linux/aefTaskMessage.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/src/AefLib",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DAEF_ARM_EXPORTS -DSYSTEM_LINUX -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -O0 -g -fprofile-arcs -ftest-coverage -fPIC   -o CMakeFiles/AEF_ARM.dir/Linux/aefTaskMessage.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTaskMessage.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/src/AefLib/Linux/aefTaskMessage.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/test",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/ef8d7bb63b73bcc98204f8763adba33115db9de2/include -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux -I/home/yackey/GitHubYackey/AEF-CI/include/gtest -I/home/yackey/GitHubYackey/AEF-CI/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g    -o CMakeFiles/AefTest.dir/Main.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/test/Main.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/test/Main.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/test",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/cc9f9b2b9f92fc82888026414560bf79d8c3a052/include -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gtest -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g -fprofile-arcs -ftest-coverage    -o CMakeFiles/AefTest.dir/Main.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/test/Main.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/test/Main.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/test",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/ef8d7bb63b73bcc98204f8763adba33115db9de2/include -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux -I/home/yackey/GitHubYackey/AEF-CI/include/gtest -I/home/yackey/GitHubYackey/AEF-CI/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g    -o CMakeFiles/AefTest.dir/MutexTests.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/test/MutexTests.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/test/MutexTests.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/test",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/cc9f9b2b9f92fc82888026414560bf79d8c3a052/include -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gtest -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g -fprofile-arcs -ftest-coverage    -o CMakeFiles/AefTest.dir/MutexTests.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/test/MutexTests.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/test/MutexTests.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/test",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/ef8d7bb63b73bcc98204f8763adba33115db9de2/include -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux -I/home/yackey/GitHubYackey/AEF-CI/include/gtest -I/home/yackey/GitHubYackey/AEF-CI/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g    -o CMakeFiles/AefTest.dir/TimerTests.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/test/TimerTests.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/test/TimerTests.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/test",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/cc9f9b2b9f92fc82888026414560bf79d8c3a052/include -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gtest -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g -fprofile-arcs -ftest-coverage    -o CMakeFiles/AefTest.dir/TimerTests.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/test/TimerTests.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/test/TimerTests.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/test",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/ef8d7bb63b73bcc98204f8763adba33115db9de2/include -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux -I/home/yackey/GitHubYackey/AEF-CI/include/gtest -I/home/yackey/GitHubYackey/AEF-CI/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g    -o CMakeFiles/AefTest.dir/ExceptionTests.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/test/ExceptionTests.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/test/ExceptionTests.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/test",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/cc9f9b2b9f92fc82888026414560bf79d8c3a052/include -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gtest -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g -fprofile-arcs -ftest-coverage    -o CMakeFiles/AefTest.dir/ExceptionTests.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/test/ExceptionTests.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/test/ExceptionTests.cpp"
 },
 {
-  "directory": "/home/yackey/GitHubYackey/AEF-CI/build/test",
-  "command": "/usr/local/AvtecGcc-1.0/ARM/armv6-eabihf--glibc--stable-2018.02-2/bin/arm-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/ef8d7bb63b73bcc98204f8763adba33115db9de2/include -I/home/yackey/GitHubYackey/AEF-CI -I/home/yackey/GitHubYackey/AEF-CI/include -I/home/yackey/GitHubYackey/AEF-CI/include/Linux -I/home/yackey/GitHubYackey/AEF-CI/include/gtest -I/home/yackey/GitHubYackey/AEF-CI/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g    -o CMakeFiles/AefTest.dir/QueueTaskTests.cpp.o -c /home/yackey/GitHubYackey/AEF-CI/test/QueueTaskTests.cpp",
-  "file": "/home/yackey/GitHubYackey/AEF-CI/test/QueueTaskTests.cpp"
+  "directory": "/home/yackey/GitHubYackey/aef-ci-yackey/build/test",
+  "command": "/usr/local/AvtecGcc-1.0/x86_64/x86-64-core-i7--glibc--stable-2018.02-2/bin/x86_64-linux-g++  -DSYSTEM_LINUX -I/home/yackey/.conan/data/AvtecGmock/1.0/yackey/stable/package/cc9f9b2b9f92fc82888026414560bf79d8c3a052/include -I/home/yackey/GitHubYackey/aef-ci-yackey -I/home/yackey/GitHubYackey/aef-ci-yackey/include -I/home/yackey/GitHubYackey/aef-ci-yackey/include/Linux -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gtest -I/home/yackey/GitHubYackey/aef-ci-yackey/include/gmock   -DLINUX=1 -fPIC -MMD -MP -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused   -O0 -g -fprofile-arcs -ftest-coverage    -o CMakeFiles/AefTest.dir/QueueTaskTests.cpp.o -c /home/yackey/GitHubYackey/aef-ci-yackey/test/QueueTaskTests.cpp",
+  "file": "/home/yackey/GitHubYackey/aef-ci-yackey/test/QueueTaskTests.cpp"
 }
 ]
