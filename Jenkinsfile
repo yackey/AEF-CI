@@ -17,8 +17,6 @@ pipeline {
                     checkout scm
                     //git 'https://github.com/yackey/AEF-CI.git'
                     stash name: 'everything', includes: '**'
-                    sh 'pwd'
-                    sh 'ls'
                 }   // end of steps
             }   // end of checkout stage  
             
@@ -76,8 +74,20 @@ pipeline {
                             dir ("build") {
                                 Build_x86_64_Release()
                             }   // end of dir
-                            deleteDir()
+                            stash name: 'release_simulator_build_stash', includes: '**'
                         }   // end of steps
+                        
+                        post {
+                            success {
+                                deleteDir()
+                                unstash 'release_simulator_build_stash'
+                                dir ("build") {
+                                    GenerateTestResuts_x86_64_Release()
+                                }
+                                deleteDir()
+                            }
+                        }
+                        
                     }   // end of Release Simulator Build stage
                     
                     stage ('Debug Simulator Build') {
@@ -95,31 +105,23 @@ pipeline {
                                 Build_x86_64_Debug()
                             }   // end of dir
                             stash name: 'debug_simulator_build_stash', includes: '**'
-                            deleteDir()
                         }   // end of steps
+                        
+                        post {
+                            success {
+                                deleteDir()
+                                unstash 'debug_simulator_build_stash'
+                                dir ("build") {
+                                    GenerateTestResuts_x86_64_Debug()
+                                }
+                                stash name: 'debug_simulator_test_stash', includes: '**'
+                            }
+                        }
                     }   // end of Debug Simulator Build stage                    
                     
                 }   //end of parallel
                 
-            }   // end of parallel build stage
-
-            stage("Generate Test results") {
-                agent {
-                    node {
-                        label 'ubuntu-build'
-                    }   // end of node
-                }    // end of agent
-                
-                steps {
-                    deleteDir()
-                    unstash 'debug_simulator_build_stash'
-                    dir ("build") {                      
-                        GenerateTestResuts_x86_64_Debug()
-                     }   // end of dir
-                     stash name: 'debug_simulator_test_stash', includes: '**'
-                     deleteDir()
-                }   // end of steps
-            }   // end of Generate Test results            
+            }   // end of parallel build stage          
             
             stage("Publish Test results") {
                 agent {
@@ -163,12 +165,12 @@ pipeline {
 
 
 def UploadPackages() {
-        sh 'conan user -p Dapassword123 -r YackNet yackey'
-        sh 'conan upload AEFLib/1.0@yackey/stable --all -r YackNet --confirm'
+    sh 'conan user -p Dapassword123 -r YackNet yackey'
+    sh 'conan upload AEFLib/1.0@yackey/stable --all -r YackNet --confirm'
 }
 
 def RemovePackages() {
-        sh 'conan remove AEFLib/1.0@yackey/stable -f'
+    sh 'conan remove AEFLib/1.0@yackey/stable -f'
 }
 
 def Build_x86_64_Release() {
@@ -208,13 +210,14 @@ def Build_ARM_Debug() {
 }
 
 def GenerateTestResuts_x86_64_Debug() {
-    sh 'pwd'
-    sh 'export LD_LIBRARY_PATH=`pwd`/x86_64/bin/Debug'
-    sh './x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'                        
+    sh 'export LD_LIBRARY_PATH=`pwd`/x86_64/bin/Debug && ./x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'                        
+}
+
+def GenerateTestResuts_x86_64_Release() {
+    sh 'export LD_LIBRARY_PATH=`pwd`/x86_64/bin/Release && ./x86_64/bin/Release/AefTest --gtest_output=xml:AefTestResultsRelease.xml'                        
 }
 
 def PublishTestResuts_x86_64_Debug() {
-    sh 'pwd'
     step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'AefTestResultsDebug.xml'])
     //  
     sh '/usr/bin/lcov --directory . --capture --output-file ./code_coverage.info -rc lcov_branch_coverage=1' 
