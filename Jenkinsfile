@@ -208,6 +208,8 @@ def Build_ARM_Debug() {
 }
 
 def GenerateTestResuts_x86_64_Debug() {
+    sh 'pwd'
+    sh 'export LD_LIBRARY_PATH=`pwd`/x86_64/bin/Debug'
     sh './x86_64/bin/Debug/AefTest --gtest_output=xml:AefTestResultsDebug.xml'                        
 }
 
