@@ -21,7 +21,7 @@ pipeline {
                 }   // end of steps
             }   // end of checkout stage  
             
-            stage ('Parallel ARM Build') {
+            stage ('Parallel Build') {
                 failFast true
                 parallel {
 
@@ -39,6 +39,7 @@ pipeline {
                             dir ("build") {
                                 Build_ARM_Release()
                             }   // end of dir
+                            deleteDir()
                         }   // end of steps
                     }   // end of Release ARM Build stage
 
@@ -56,6 +57,7 @@ pipeline {
                             dir ("build") {
                                 Build_ARM_Debug()
                             }   // end of dir
+                            deleteDir()
                         }   // end of steps
                     }   // end of Debug ARM Build stage
 
@@ -71,29 +73,33 @@ pipeline {
                             deleteDir()
                             unstash 'everything'
                             dir ("build") {
-                                //Build_x86_64_Release()
+                                Build_x86_64_Release()
                             }   // end of dir
+                            deleteDir()
                         }   // end of steps
                     }   // end of Release Simulator Build stage
-                }   //end of parallel ARM
-            }
+                    
+                    stage ('Debug Simulator Build') {
 
-            stage ('Debug Simulator Build') {
+                        agent {
+                            node {
+                                label 'ubuntu-build'
+                                }   // end of node
+                        }    // end of agent
 
-                agent {
-                    node {
-                        label 'ubuntu-build'
-                        }   // end of node
-                }    // end of agent
-
-                steps {
-                    deleteDir()
-                    unstash 'everything'
-                    dir ("build") {                           
-                        Build_x86_64_Debug()
-                    }   // end of dir
-                }   // end of steps
-            }   // end of Debug Simulator Build stage
+                        steps {
+                            deleteDir()
+                            unstash 'everything'
+                            dir ("build") {                           
+                                Build_x86_64_Debug()
+                            }   // end of dir
+                            stash name: 'debug_simulator_build_stash', includes: '**'
+                        }   // end of steps
+                    }   // end of Debug Simulator Build stage                    
+                    
+                }   //end of parallel
+                
+            }   // end of parallel build stage
 
             stage("Generate Test results") {
                 agent {
@@ -103,9 +109,12 @@ pipeline {
                 }    // end of agent
                 
                 steps {
+                    deleteDir()
+                    unstash 'debug_simulator_build_stash'
                     dir ("build") {                      
                         GenerateTestResuts_x86_64_Debug()
                      }   // end of dir
+                     stash name: 'debug_simulator_test_stash', includes: '**'
                 }   // end of steps
             }   // end of Generate Test results            
             
@@ -117,10 +126,11 @@ pipeline {
                 }    // end of agent
                 
                 steps {
-
-                    dir ("build") {
+                    deleteDir()
+                    unstash 'debug_simulator_test_stash'
+                    //dir ("build") {
                         PublishTestResuts_x86_64_Debug()
-                     }   // end of dir
+                     //}   // end of dir
                 }   // end of steps
             }   // end of Publish Test results       
             
