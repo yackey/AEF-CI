@@ -78,7 +78,7 @@ pipeline {
                         }   // end of steps
                         
                         post {
-                            success {
+                            success {   // test in parallel also
                                 deleteDir()
                                 unstash 'release_simulator_build_stash'
                                 dir ("build") {
@@ -108,7 +108,7 @@ pipeline {
                         }   // end of steps
                         
                         post {
-                            success {
+                            success {   // test in parallel also
                                 deleteDir()
                                 unstash 'debug_simulator_build_stash'
                                 dir ("build") {
