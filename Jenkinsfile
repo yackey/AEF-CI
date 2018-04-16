@@ -17,6 +17,8 @@ pipeline {
                     checkout scm
                     //git 'https://github.com/yackey/AEF-CI.git'
                     stash name: 'everything', includes: '**'
+                    sh 'pwd'
+                    sh 'ls'
                 }   // end of steps
             }   // end of checkout stage  
             
