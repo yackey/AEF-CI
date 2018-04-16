@@ -95,6 +95,7 @@ pipeline {
                                 Build_x86_64_Debug()
                             }   // end of dir
                             stash name: 'debug_simulator_build_stash', includes: '**'
+                            deleteDir()
                         }   // end of steps
                     }   // end of Debug Simulator Build stage                    
                     
@@ -116,6 +117,7 @@ pipeline {
                         GenerateTestResuts_x86_64_Debug()
                      }   // end of dir
                      stash name: 'debug_simulator_test_stash', includes: '**'
+                     deleteDir()
                 }   // end of steps
             }   // end of Generate Test results            
             
@@ -129,9 +131,9 @@ pipeline {
                 steps {
                     deleteDir()
                     unstash 'debug_simulator_test_stash'
-                    //dir ("build") {
+                    dir ("build") {
                         PublishTestResuts_x86_64_Debug()
-                     //}   // end of dir
+                     }   // end of dir
                 }   // end of steps
             }   // end of Publish Test results       
             
