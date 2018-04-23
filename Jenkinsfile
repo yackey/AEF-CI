@@ -38,7 +38,7 @@ pipeline {
                             dir ("build") {
                                 Build_ARM_Release()
                             }   // end of dir
-                            deleteDir()
+                            stash name: 'release_arm_build_stash', includes: '**'
                         }   // end of steps
                     }   // end of Release ARM Build stage
 
@@ -56,7 +56,7 @@ pipeline {
                             dir ("build") {
                                 Build_ARM_Debug()
                             }   // end of dir
-                            deleteDir()
+                            stash name: 'debug_arm_build_stash', includes: '**'
                         }   // end of steps
                     }   // end of Debug ARM Build stage
 
@@ -84,7 +84,6 @@ pipeline {
                                 dir ("build") {
                                     GenerateTestResuts_x86_64_Release()
                                 }
-                                deleteDir()
                             }
                         }
                         
@@ -147,9 +146,7 @@ pipeline {
                 }    // end of agent
                 
                 steps {
-                    dir ("build") {
-                        UploadPackages()
-                     }   // end of dir
+                    ExportPackages()
                 }   // end of steps
                 
             }   // end of Upload Packages
@@ -163,50 +160,28 @@ pipeline {
     }    
 }   // end of pipeline
 
-
-def UploadPackages() {
-    sh 'conan user -p Dapassword123 -r YackNet yackey'
-    sh 'conan upload AEFLib/1.0@yackey/stable --all -r YackNet --confirm'
-}
-
-def RemovePackages() {
-    sh 'conan remove AEFLib/1.0@yackey/stable -f'
-}
-
-def Build_x86_64_Release() {
+def Build_x86_64_Release() {        
     sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TARGET_PROCESSOR=x86_64 ..'
     sh 'cmake --build .'
-    //
-    sh 'rm ./conan*.*'
-    sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release -f'
 }
 
 def Build_x86_64_Debug() {
     sh 'conan install ../test -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-x86_64.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=x86_64 ..'
     sh 'cmake --build .'
-    //
-    sh 'rm ./conan*.*'
-    sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f'
 }
 
 def Build_ARM_Release() {
     sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TARGET_PROCESSOR=ARM ..'
     sh 'cmake --build .'
-    //
-    sh 'rm ./conan*.*'
-    sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release -f'
 }
 
 def Build_ARM_Debug() {
     sh 'conan install ../test -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug'
     sh 'cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=../Toolchain-GCC-ARM.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TARGET_PROCESSOR=ARM ..'
     sh 'cmake --build .'
-    //
-    sh 'rm ./conan*.*'
-    sh 'conan export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f'
 }
 
 def GenerateTestResuts_x86_64_Debug() {
@@ -231,3 +206,73 @@ def PublishTestResuts_x86_64_Debug() {
         reportName: 'Code Coverage Debug', 
         reportTitles: ''])                         
 }
+
+def ExportPackages()
+{
+    script {
+        def artifactory_name = "YackNet"
+        def artifactory_repo = "YackNet-conan"
+        def server = Artifactory.server artifactory_name
+        def client = Artifactory.newConanClient()
+        String ServerName = client.remote.add server: server, repo: artifactory_repo
+        
+        String removeCmd = "remove AEFLib/* -f"
+        client.run(command: removeCmd);
+        
+        sh 'echo X86_64-RELEASE Export'
+        deleteDir()
+        unstash 'release_simulator_build_stash'
+        dir ("build") {
+            sh 'rm -f ./conan*.*'
+            String x86_64_Release_ExportCmd = "export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release -f"
+            client.run(command: x86_64_Release_ExportCmd);
+        }   // end of dir
+
+        sh 'echo X86_64-DEBUG Export'
+        deleteDir()
+        unstash 'debug_simulator_build_stash'
+        dir ("build") {
+            sh 'rm -f ./conan*.*'
+            String x86_64_Debug_ExportCmd = "export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=x86_64 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f"
+            client.run(command: x86_64_Debug_ExportCmd);
+        }   // end of dir        
+        
+        sh 'echo ARM-RELEASE Export'
+        deleteDir()
+        unstash 'release_arm_build_stash'
+        dir ("build") {
+            sh 'rm -f ./conan*.*'
+            String ARM_Release_ExportCmd = "export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Release -f"
+            client.run(command: ARM_Release_ExportCmd);
+        }   // end of dir         
+        
+        sh 'echo ARM-DEBUG Export'
+        deleteDir()
+        unstash 'debug_arm_build_stash'
+        dir ("build") {
+            sh 'rm -f ./conan*.*'
+            String ARM_Debug_ExportCmd = "export-pkg .. AEFLib/1.0@yackey/stable -s os=Linux -s arch=armv7 -s compiler=gcc -s compiler.version=6.4 -s build_type=Debug -f"
+            client.run(command: ARM_Debug_ExportCmd);
+        }   // end of dir
+        
+        String searchCmd = "search"
+        client.run(command: searchCmd); 
+           
+        String myCmd = "upload AEFLib/1.0@yackey/stable --all -r ${ServerName} --confirm"
+        def bInfo = client.run(command: myCmd);
+    }
+}
+
+def RemovePackages() {
+    script {
+        echo "RemovePackages"
+        def artifactory_name = "YackNet"
+        def artifactory_repo = "YackNet-conan"
+        def server = Artifactory.server artifactory_name
+        def client = Artifactory.newConanClient()
+        String ServerName = client.remote.add server: server, repo: artifactory_repo
+        String removeCmd = "remove AEFLib/* -f"
+        client.run(command: removeCmd);
+    }
+}
+
