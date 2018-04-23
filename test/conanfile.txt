@@ -2,7 +2,7 @@
 AvtecGmock/1.0@yackey/stable
 
 [generators]
-
+cmake
 
 [options]
 
